@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoList.MainPage"
+             xmlns:vm="clr-namespace:ToDoList.Models"
+             x:DataType="vm:TasksModel"
+             BackgroundImageSource="backgroundpic.jpeg">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="10"
+            Padding="10"
+            >
+            <Frame WidthRequest="300" CornerRadius="35" BackgroundColor="Black" BorderColor="Transparent">
+                <Label Text="TO DO LIST" TextDecorations="Underline" FontSize="30" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Center"></Label>
+            </Frame>
+
+            <Frame BackgroundColor="Transparent" BorderColor="Transparent">
+                <Grid ColumnSpacing="5" RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <VerticalStackLayout Spacing="10">
+                        <Entry Text="{Binding Title}" Placeholder="Please enter title here" PlaceholderColor="Black" Background="White" TextColor="Black" FontAttributes="Bold" x:Name="tientry" Grid.Column="0" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Entry>
+                        <Entry Text="{Binding Description}" Placeholder="Please enter description here" PlaceholderColor="Black" Background="White" TextColor="Black" FontAttributes="Bold" x:Name="desentry" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Entry>
+                        <Button Text="ADD" FontSize="20" FontAttributes="Bold" Clicked="Addbtn" Grid.Column="2" Grid.RowSpan="2" Background="Black" TextColor="White" HorizontalOptions="Center" WidthRequest="100" CornerRadius="35"></Button>
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>
+
+            <Frame HorizontalOptions="Center">
+                <ListView x:Name="todolist" ItemTapped="tapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid RowSpacing="20" ColumnSpacing="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="30">
+                                        <Label Text="{Binding Title}" FontSize="15" FontAttributes="Bold" TextColor="Black" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"></Label>
+                                        <Label Text="{Binding Description}" FontSize="15" TextColor="Black" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center"></Label>
+                                        <Label Text="{Binding time}" FontSize="14" TextColor="Black" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center"></Label>
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
